@@ -1,5 +1,5 @@
 # Waifuteer 0.0.1
-$${\textf{\color{red}\Large THIS IS PRE-ALPHA SOFTWARE}}$$
+$${\text{\color{red}\Large THIS IS PRE-ALPHA SOFTWARE}}$$
 
 It is possible that you could build and use this software yourself for streaming activities; and stream as kantan-chan (or a modification of her) you are brave; i don't feel confident in this software and lots of things and documentation still need work. 
 
