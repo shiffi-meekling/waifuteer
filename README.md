@@ -50,7 +50,7 @@ yep, she is public domain so you can do whatever you want with her.  You could e
 
 You are correct for normal professional projects. However, it makes me, the solo unpaid developer giggle and thus, it is staying in.
 
-## why did you write your own worse parsing library instead of using boost::spirit or something?
+### why did you write your own worse parsing library instead of using boost::spirit or something?
 
 i tried using boost::spirit but i found the error messages too confusing. My library also has confusing error messages, but i wrote it, so i am more likely to understand said error messages. i hope to write a new better parsing libriary, but i want to wait until c++26 comes out and we get reflection support.
 
