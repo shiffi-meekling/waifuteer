@@ -1,0 +1,118 @@
+# a simple example puppet
+=== images ===
+[img: ./kantan-chan/body.PNG] 
+#we use math to convert from pixels to relative points
+necktie_base = {103/199, 116/429}
+left_eye = {86/199, 59/429}
+left_eye_bottom = {86/199, 77/429}
+right_eye = {116/199, 59/429}
+right_eye_bottom = {116/199, 77/429}
+mouth = {100/199, 81/429}
+mouth_bottom = {100/199, 92/429}
+ahego_base = {96/199, 3/429}
+hair_base = {100/199, 101/429}
+
+[img: ./kantan-chan/eye-white.PNG]
+center = {0.5, 0.5} #halfway down and halfway across
+
+=== atlases ===
+[index: mouth[width, height]]
+./kantan-chan/narrow-mouth.PNG = 0, 0
+./kantan-chan/open-narrow-mouth.PNG = 0, 1
+./kantan-chan/mouth.PNG = 1, 0
+./kantan-chan/open-mouth.PNG = 1, 1
+
+=== mottes ===
+[motte: ahego]
+tied_to = ahego_base l 0.2 P 0.1 m 2.0
+friction = 0.10
+gravity = 0, 0.01
+
+[motte: necktie]
+tied_to = hair_base l 0.15 P 0.2 m 0.6
+friction = 0.15
+gravity = 0, -0.02
+
+=== skeletons ===
+[spine: hair]
+start = hair_base
+line = 20: hair_base - {0,0.2}
+history = 50: {0, -0.01} 
+
+=== render ===
+
+[chip: body]
+texture = ./kantan-chan/body.PNG
+top = _nose # input
+bottom = {0,-1}
+topOverdraw = 0.1
+front = 0.5
+width = 0.7
+
+[ribbon: back_hair]
+texture = ./kantan-chan/back-hair.PNG
+spine = hair
+front = 0.3
+width = 0.3
+cross_direction = 1,0
+flip = yes #is vertex 0 at the top or the bottom?
+
+[chip: left_eye]
+texture = ./kantan-chan/eye-white.PNG
+top = left_eye
+bottom = left_eye_bottom
+#since we have a depth map here, we bring the back forwards
+#from the default
+back = 0.45
+front = 0.6
+width = 0.07
+#we ignore depth here to make a dent in the face
+#this means that these eyes must be painted before 
+#anything which goes in front of them
+depthFunc = always
+
+[chip: right_eye]
+texture = ./kantan-chan/eye-white.PNG
+top = right_eye
+bottom = right_eye_bottom
+back = 0.45
+front = 0.6
+width = -0.07
+depthFunc = always
+
+[dot: left_iris]
+texture = ./kantan-chan/iris.PNG
+center = left_eye__center * 0.94 
+radius = 0.02 - (_k_a * 0.012) # _k_a is 1 when the a key is held down
+
+#we place the iris between face and the back of the eye
+#that way it renders in side the eye only
+#since it is behind the face and in front of the eye
+front = 0.48
+
+[dot: right_iris] left_iris #inherit property from left_iris
+                            #so we don't need to repeat ourself
+texture = ./kantan-chan/iris.PNG
+center = right_eye__center * 0.94 
+
+
+[chip: necktie]
+texture = ./kantan-chan/necktie.PNG
+top = necktie_base
+bottom = necktie 
+front = 0.7
+width = 0.2
+
+[chip: mouth]
+texture = mouth[_mouth_wide,_mouth_open]
+top = mouth 
+bottom = mouth_bottom 
+front = 0.7
+width = 0.07
+
+[chip: ahego]
+texture = ./kantan-chan/ahoge.PNG
+top = ahego
+bottom = ahego_base
+front = 0.5
+width = 0.25

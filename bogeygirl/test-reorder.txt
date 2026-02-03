@@ -1,0 +1,7 @@
+head: fogey;
+a b c;
+b;
+b a;
+a;
+a c;
+a c b;

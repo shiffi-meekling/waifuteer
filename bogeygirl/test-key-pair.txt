@@ -1,0 +1,15 @@
+## hehe # none
+i, 11
+f, 10.44
+
+## hoo # none
+i, 984
+f, 11.0
+
+## bar # hehe
+f, -1.0
+
+5
+## hoohoo # bar
+i, 1000
+

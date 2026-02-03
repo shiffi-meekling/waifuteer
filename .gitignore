@@ -1,0 +1,12 @@
+*.d
+*.o
+keyboard
+waifuteer
+*.out
+*~
+*.gch
+*.swp
+tags
+tests
+windows-build-deps
+build

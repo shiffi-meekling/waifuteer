@@ -1,0 +1,7 @@
+-xc++
+-std=c++23
+-I/usr/include/SDL2
+-I/usr/include/opencv4
+-Ilibs/imgui/
+-Ilibs/imgui/backends/
+
